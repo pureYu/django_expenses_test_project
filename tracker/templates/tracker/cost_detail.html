@@ -1,0 +1,20 @@
+{% extends "tracker/base.html" %}
+{% block content %}
+<article class="media content-section">
+<!--    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">-->
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'user-costs' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_spent|date:"F d, Y" }}</small>
+            {% if object.author == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'cost-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cost-delete' object.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.amount|stringformat:'0.2f' }}</h2>
+        <p class="article-content">{{ object.title }}</p>
+    </div>
+</article>
+{% endblock content %}
