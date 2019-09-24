@@ -16,12 +16,12 @@ from .models import Cost
 
 
 def home(request):
-    # return HttpResponse('<h1>App Home</h1>')
-    context = {
-                'costs': Cost.objects.all(),
-                'title': 'home'
-              }
-    return render(request, 'tracker/home.html', context)
+    return HttpResponse('<h1>App Home</h1>')
+    # context = {
+    #             'costs': Cost.objects.all(),
+    #             'title': 'home'
+    #           }
+    # return render(request, 'tracker/home.html', context)
 
 
 
@@ -30,7 +30,7 @@ class CostListView(ListView):     # CLASS BASED VIEW
     template_name = 'tracker/home.html'  # instead of <app>/<model>_<viewtype>.html
     context_object_name = 'costs'
     ordering = ['-date_spent']  # '-' = desc
-    # paginate_by = 5
+    paginate_by = 5
 
 
 
